@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.row > div {
+    padding: 10px;
+}
