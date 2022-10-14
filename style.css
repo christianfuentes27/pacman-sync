@@ -1,3 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -6,7 +22,6 @@
 .row {
     display: flex;
     flex-direction: row;
-    padding: 5px;
 }
 
 .row > div {
