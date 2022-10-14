@@ -1,3 +1,5 @@
-let pacman = new game.Game();
-pacman.render();
-pacman.movePacman();
+let play = new game.Game();
+play.setPacman();
+play.setGhosts();
+play.render();
+play.movePacman();

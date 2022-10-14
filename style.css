@@ -7,6 +7,8 @@
 html, body {
     height: 100%;
     width: 100%;
+    background-color: #222;
+    color: white;
 }
 
 body {
@@ -26,4 +28,6 @@ body {
 
 .row > div {
     padding: 10px;
+    height: 30px;
+    width: 30px;
 }
