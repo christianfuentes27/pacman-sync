@@ -17,6 +17,13 @@ game = {
             this.maxValue = this.contentBoard.length - 1;
         }
 
+        // setPacman() {
+        //     this.pacman = this.board.children[this.positionX].children[this.positionY];
+        //     this.pacman.setAttribute('id', 'pacman');
+        //     this.pacman.innerHTML = 'X';
+        // }
+
+        render() {
         render() {
             let fragment = document.createDocumentFragment();
             for (let i = 0; i < this.contentBoard.length; i++) {
