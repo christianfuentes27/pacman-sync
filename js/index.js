@@ -1,2 +1,3 @@
 let pacman = new game.Game();
-pacman.setBoard();
+pacman.render();
+pacman.movePacman();
