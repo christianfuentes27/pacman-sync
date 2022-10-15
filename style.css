@@ -4,11 +4,18 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: pacman;
+    src: url(pacman.ttf);
+}
+
 html, body {
     height: 100%;
     width: 100%;
     background-color: #222;
     color: white;
+    font-family: pacman;
+    font-size: 18px;
 }
 
 body {

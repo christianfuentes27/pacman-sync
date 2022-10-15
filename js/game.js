@@ -9,21 +9,26 @@ game = {
             this.able = true;
 
             this.pacmanX = 2;
-            this.pacmanY = 2;
+            this.pacmanY = 8;
 
             this.ghost1X = 0;
             this.ghost1Y = 0;
 
-            this.ghost2X = 4;
-            this.ghost2Y = 4;
+            this.ghost2X = 8;
+            this.ghost2Y = 17;
             this.contentBoard = [
-                [0, 1, 0, 0, 0],
-                [0, 1, 0, 1, 1],
-                [0, 0, 0, 0, 0],
-                [1, 0, 1, 1, 0],
-                [1, 0, 0, 0, 0]
+                [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+                [0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0],
+                [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+                [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0],
+                [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+                [0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0],
+                [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+                [0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0],
+                [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
             ];
-            this.maxValue = this.contentBoard.length - 1;
+            this.maxValueX = this.contentBoard.length - 1;
+            this.maxValueY = this.contentBoard[0].length - 1;
         }
 
         setPacman() {
@@ -40,7 +45,7 @@ game = {
             for (let i = 0; i < this.contentBoard.length; i++) {
                 let row = document.createElement('div');
                 row.classList.add('row');
-                for (let j = 0; j < this.contentBoard.length; j++) {
+                for (let j = 0; j < this.contentBoard[0].length; j++) {
                     let content = document.createElement('div');
                     content.innerHTML = this.contentBoard[i][j];
                     row.appendChild(content);
@@ -51,47 +56,40 @@ game = {
         }
 
         movingPacman = (e) => {
-            let complete = false;
             switch (e.key) {
                 case 'ArrowUp':
                     if (this.pacmanX != 0 && this.contentBoard[this.pacmanX - 1][this.pacmanY] == 0) {
                         this.contentBoard[this.pacmanX][this.pacmanY] = 0;
                         this.pacmanX--;
-                        complete = true;
                     }
                     break;
                 case 'ArrowRight':
-                    if (this.pacmanY != this.maxValue && this.contentBoard[this.pacmanX][this.pacmanY + 1] == 0) {
+                    if (this.pacmanY != this.maxValueY && this.contentBoard[this.pacmanX][this.pacmanY + 1] == 0) {
                         this.contentBoard[this.pacmanX][this.pacmanY] = 0;
                         this.pacmanY++;
-                        complete = true;
                     }
                     break;
                 case 'ArrowDown':
-                    if (this.pacmanX != this.maxValue && this.contentBoard[this.pacmanX + 1][this.pacmanY] == 0) {
+                    if (this.pacmanX != this.maxValueX && this.contentBoard[this.pacmanX + 1][this.pacmanY] == 0) {
                         this.contentBoard[this.pacmanX][this.pacmanY] = 0;
                         this.pacmanX++;
-                        complete = true;
                     }
                     break;
                 case 'ArrowLeft':
                     if (this.pacmanY != 0 && this.contentBoard[this.pacmanX][this.pacmanY - 1] == 0) {
                         this.contentBoard[this.pacmanX][this.pacmanY] = 0;
                         this.pacmanY--;
-                        complete = true;
                     }
                     break;
             }
             this.contentBoard[this.pacmanX][this.pacmanY] = 'X';
 
-            if (complete) {
-                let values1 = this.moveGhosts(this.ghost1X, this.ghost1Y);
-                this.ghost1X = values1[0];
-                this.ghost1Y = values1[1];
-                let values2 = this.moveGhosts(this.ghost2X, this.ghost2Y);
-                this.ghost2X = values2[0];
-                this.ghost2Y = values2[1];
-            }
+            let values1 = this.moveGhosts(this.ghost1X, this.ghost1Y);
+            this.ghost1X = values1[0];
+            this.ghost1Y = values1[1];
+            let values2 = this.moveGhosts(this.ghost2X, this.ghost2Y);
+            this.ghost2X = values2[0];
+            this.ghost2Y = values2[1];
 
             this.checkLose();
             this.board.textContent = '';
@@ -129,10 +127,10 @@ game = {
             let options = [];
 
             if (x != 0 && this.contentBoard[x - 1][y] != 1 && this.contentBoard[x - 1][y] != 'A') options.push('up');
-            if (y != this.maxValue && this.contentBoard[x][y + 1] != 1 && this.contentBoard[x][y + 1] != 'A') options.push('right');
-            if (x != this.maxValue && this.contentBoard[x + 1][y] != 1 && this.contentBoard[x + 1][y] != 'A') options.push('down');
+            if (y != this.maxValueY && this.contentBoard[x][y + 1] != 1 && this.contentBoard[x][y + 1] != 'A') options.push('right');
+            if (x != this.maxValueX && this.contentBoard[x + 1][y] != 1 && this.contentBoard[x + 1][y] != 'A') options.push('down');
             if (y != 0 && this.contentBoard[x][y - 1] != 1 && this.contentBoard[x][y - 1] != 'A') options.push('left');
-
+            console.log(options);
             return options;
         }
 
