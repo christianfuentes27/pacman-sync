@@ -7,20 +7,21 @@ game = {
             this.btn = document.querySelector('.btn');
             this.contentBoard = null;
             this.pacman = null;
-            // this.pacmanX = 4;
-            // this.pacmanY = 4;
+            
             this.pacmanX = 2;
             this.pacmanY = 2;
 
-            this.ghost1X = 2;
-            this.ghost1Y = 1;
+            this.ghost1X = 0;
+            this.ghost1Y = 0;
 
-            // this.ghost2X = 9;
-            // this.ghost2Y = 9;
+            this.ghost2X = 4;
+            this.ghost2Y = 4;
             this.contentBoard = [
-                [0, 0, 0],
-                [0, 1, 1],
-                [0, 0, 0]
+                [0, 1, 0, 0, 0],
+                [0, 1, 0, 1, 1],
+                [0, 0, 0, 0, 0],
+                [1, 0, 1, 1, 0],
+                [1, 0, 0, 0, 0]
                 // [0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
                 // [0, 1, 0, 1, 0, 0, 0, 0, 1, 0],
                 // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -41,7 +42,7 @@ game = {
 
         setGhosts() {
             this.contentBoard[this.ghost1X][this.ghost1Y] = 'A';
-            // this.contentBoard[this.ghost2X][this.ghost2Y] = 'A';
+            this.contentBoard[this.ghost2X][this.ghost2Y] = 'A';
         }
 
         render() {
@@ -100,9 +101,9 @@ game = {
                     this.ghost1X = values1[0];
                     this.ghost1Y = values1[1];
                     console.log('X: ' + this.ghost1X + ' Y: ' + this.ghost1Y);
-                    // let values2 = this.moveGhosts(this.ghost2X, this.ghost2Y);
-                    // this.ghost2X = values2[0];
-                    // this.ghost2Y = values2[1];
+                    let values2 = this.moveGhosts(this.ghost2X, this.ghost2Y);
+                    this.ghost2X = values2[0];
+                    this.ghost2Y = values2[1];
                 }
                 this.checkLose();
                 this.board.textContent = '';
