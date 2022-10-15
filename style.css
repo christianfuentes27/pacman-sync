@@ -18,7 +18,7 @@ body {
 
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .row {
@@ -30,4 +30,23 @@ body {
     padding: 10px;
     height: 30px;
     width: 30px;
+}
+
+.lose {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn {
+    border: 1px solid white;
+    padding: 7px 20px;
+    margin: 20px auto;
+    font-size: 12px;
+    text-align: center;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #222;
 }
