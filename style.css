@@ -35,6 +35,7 @@ body {
 .lose {
     text-align: center;
     margin-top: 30px;
+    display: none;
 }
 
 .btn {
